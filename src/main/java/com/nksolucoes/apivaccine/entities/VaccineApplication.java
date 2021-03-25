@@ -2,12 +2,18 @@ package com.nksolucoes.apivaccine.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tab_vaccine_application")
@@ -19,7 +25,13 @@ public class VaccineApplication implements Serializable {
 	private Long id;
 	private String vaccineName;
 	private String registeredEmail;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant applicationDate;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Register> register = new ArrayList<>();
 	
 	public VaccineApplication() {
 	}
@@ -63,7 +75,11 @@ public class VaccineApplication implements Serializable {
 	public void setApplicationDate(Instant applicationDate) {
 		this.applicationDate = applicationDate;
 	}
-
+	
+	public List<Register> getRegister(){
+		return register;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

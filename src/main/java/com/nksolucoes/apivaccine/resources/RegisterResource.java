@@ -1,21 +1,34 @@
 package com.nksolucoes.apivaccine.resources;
 
-import java.time.Instant;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nksolucoes.apivaccine.entities.Register;
+import com.nksolucoes.apivaccine.service.RegisterService;
 
 @RestController
 @RequestMapping(value = "/register")
 public class RegisterResource {
-	
+
+	@Autowired
+	private RegisterService service;
+
 	@GetMapping
-	public ResponseEntity<Register> findAll() {
-		Register c = new Register(1L, 00011122233, "Chandler Bing", "bing@gmail.com", Instant.parse("2021-03-24T22:14:00Z"));
-		return ResponseEntity.ok().body(c);
+	public ResponseEntity<List<Register>> findAll() {
+		List<Register> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Register> findById(@PathVariable Long id) {
+		Register obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+
 }
