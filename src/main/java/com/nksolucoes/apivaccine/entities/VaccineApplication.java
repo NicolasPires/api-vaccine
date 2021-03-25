@@ -3,22 +3,33 @@ package com.nksolucoes.apivaccine.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tab_vaccine_application")
 public class VaccineApplication implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nameVaccine;
-	private String emailRegistered;
-	private Instant dtaApplication;
+	private String vaccineName;
+	private String registeredEmail;
+	private Instant applicationDate;
 	
 	public VaccineApplication() {
 	}
 
-	public VaccineApplication(Long id, String nameVaccine, String emailRegistered, Instant dtaApplication) {
+	public VaccineApplication(Long id, String vaccineName, String registeredEmail, Instant applicationDate) {
 		super();
 		this.id = id;
-		this.nameVaccine = nameVaccine;
-		this.emailRegistered = emailRegistered;
-		this.dtaApplication = dtaApplication;
+		this.vaccineName = vaccineName;
+		this.registeredEmail = registeredEmail;
+		this.applicationDate = applicationDate;
 	}
 
 	public Long getId() {
@@ -29,28 +40,28 @@ public class VaccineApplication implements Serializable {
 		this.id = id;
 	}
 
-	public String getNameVaccine() {
-		return nameVaccine;
+	public String getVaccineName() {
+		return vaccineName;
 	}
 
-	public void setNameVaccine(String nameVaccine) {
-		this.nameVaccine = nameVaccine;
+	public void setVaccineName(String vaccineName) {
+		this.vaccineName = vaccineName;
 	}
 
-	public String getEmailRegistered() {
-		return emailRegistered;
+	public String getRegisteredEmail() {
+		return registeredEmail;
 	}
 
-	public void setEmailRegistered(String emailRegistered) {
-		this.emailRegistered = emailRegistered;
+	public void setRegisteredEmail(String registeredEmail) {
+		this.registeredEmail = registeredEmail;
 	}
 
-	public Instant getDtaApplication() {
-		return dtaApplication;
+	public Instant getApplicationDate() {
+		return applicationDate;
 	}
 
-	public void setDtaApplication(Instant dtaApplication) {
-		this.dtaApplication = dtaApplication;
+	public void setApplicationDate(Instant applicationDate) {
+		this.applicationDate = applicationDate;
 	}
 
 	@Override
@@ -77,7 +88,4 @@ public class VaccineApplication implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-
 }

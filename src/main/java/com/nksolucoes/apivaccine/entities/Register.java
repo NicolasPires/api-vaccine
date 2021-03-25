@@ -3,25 +3,35 @@ package com.nksolucoes.apivaccine.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tab_register")
 public class Register implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer cpf;
 	private String name;
 	private String email;
-	private Instant dtaNascimento;
+	private Instant birthDate;
 	
 	public Register() {
 	}
 
-	public Register(Long id, Integer cpf, String name, String email, Instant dtaNascimento) {
+	public Register(Long id, Integer cpf, String name, String email, Instant birthDate) {
 		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
-		this.dtaNascimento = dtaNascimento;
+		this.birthDate = birthDate;
 	}
 
 	public Long getId() {
@@ -40,11 +50,11 @@ public class Register implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNome(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -56,12 +66,12 @@ public class Register implements Serializable {
 		this.email = email;
 	}
 
-	public Instant getDtaNascimento() {
-		return dtaNascimento;
+	public Instant getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDtaNascimento(Instant dtaNascimento) {
-		this.dtaNascimento = dtaNascimento;
+	public void setBirthDate(Instant birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override
@@ -88,7 +98,4 @@ public class Register implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-
 }
