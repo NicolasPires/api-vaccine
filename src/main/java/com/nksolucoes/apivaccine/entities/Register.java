@@ -8,18 +8,18 @@ public class Register implements Serializable {
 
 	private Long id;
 	private Integer cpf;
-	private String nome;
+	private String name;
 	private String email;
 	private Instant dtaNascimento;
 	
 	public Register() {
 	}
 
-	public Register(int id, Integer cpf, String nome, String email, Instant dtaNascimento) {
+	public Register(Long id, Integer cpf, String name, String email, Instant dtaNascimento) {
 		super();
-		this.id = (long) id;
+		this.id = id;
 		this.cpf = cpf;
-		this.nome = nome;
+		this.name = name;
 		this.email = email;
 		this.dtaNascimento = dtaNascimento;
 	}
@@ -41,11 +41,11 @@ public class Register implements Serializable {
 	}
 
 	public String getNome() {
-		return nome;
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNome(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
