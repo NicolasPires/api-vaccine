@@ -23,5 +23,9 @@ public class RegisterService {
 		Optional<Register> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public Register insert(Register obj) {
+		return repository.save(obj);		
+	}
 
 }

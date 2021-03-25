@@ -23,5 +23,9 @@ public class VaccineApplicationService {
 		Optional<VaccineApplication> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public VaccineApplication insert(VaccineApplication obj) {
+		return repository.save(obj);
+	}
 
 }
